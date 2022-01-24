@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -67,8 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Color(int.parse('0xff1289A7')),
     Color(int.parse('0xffD980FA'))
   ];
-  TextStyle textStyle;
-  TextAlign textAlign;
+  TextStyle? textStyle;
+  TextAlign? textAlign;
 
   @override
   void initState() {
@@ -117,8 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: TextStyleEditor(
                     fonts: fonts,
                     paletteColors: paletteColors,
-                    textStyle: textStyle,
-                    textAlign: textAlign,
+                    textStyle: textStyle!,
+                    textAlign: textAlign!,
                     initialTool: EditorToolbarAction.fontFamilyTool,
                     onTextAlignEdited: (align) {
                       setState(() {
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     onTextStyleEdited: (style) {
                       setState(() {
-                        textStyle = textStyle.merge(style);
+                        textStyle = textStyle!.merge(style);
                       });
                     },
                     onCpasLockTaggle: (caps) {
