@@ -7,6 +7,13 @@ Text style editor widget for flutter
 
 **Show some ❤️ and star the repo to support the project**
 
+## Notes from aozpolat:
+
+- I edited this repo to use it in [Stencil](https://play.google.com/store/apps/details?id=com.StudioNext.stencil&hl=en_US&gl=US) app that we are building.
+- Upgraded the example project to null safety
+- Deleted some unnecessary features for Stencil app like toggling caps lock and changing font color.
+- Added textfield to the example project so users can type anything they want. 
+
 ## Features
 
 - Edit `TextStyle`
