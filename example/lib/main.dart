@@ -45,40 +45,20 @@ class _MyHomePageState extends State<MyHomePage> {
     'SEASRN',
     'Windsong',
   ];
-  List<Color> paletteColors = [
-    Colors.black,
-    Colors.white,
-    Color(int.parse('0xffEA2027')),
-    Color(int.parse('0xff006266')),
-    Color(int.parse('0xff1B1464')),
-    Color(int.parse('0xff5758BB')),
-    Color(int.parse('0xff6F1E51')),
-    Color(int.parse('0xffB53471')),
-    Color(int.parse('0xffEE5A24')),
-    Color(int.parse('0xff009432')),
-    Color(int.parse('0xff0652DD')),
-    Color(int.parse('0xff9980FA')),
-    Color(int.parse('0xff833471')),
-    Color(int.parse('0xff112CBC4')),
-    Color(int.parse('0xffFDA7DF')),
-    Color(int.parse('0xffED4C67')),
-    Color(int.parse('0xffF79F1F')),
-    Color(int.parse('0xffA3CB38')),
-    Color(int.parse('0xff1289A7')),
-    Color(int.parse('0xffD980FA'))
-  ];
+
   TextStyle? textStyle;
   TextAlign? textAlign;
 
   @override
   void initState() {
     textStyle = TextStyle(
-      fontSize: 15,
-      color: Colors.white,
+      fontSize: 30,
+      color: Colors.black,
       fontFamily: 'OpenSans',
+      decoration: TextDecoration.none,
     );
 
-    textAlign = TextAlign.left;
+    textAlign = TextAlign.center;
 
     super.initState();
   }
@@ -92,11 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: Align(
                 alignment: Alignment.center,
-                child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                child: TextField(
+                  showCursor: false,
+                  decoration: new InputDecoration(
+                      border: InputBorder.none, hintText: 'Text'),
                   style: textStyle,
-                  textAlign: textAlign,
-                  maxLines: 10,
+                  textAlign: textAlign!,
+                  // maxLines: 10,
                 ),
               ),
             ),
@@ -116,7 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.topCenter,
                   child: TextStyleEditor(
                     fonts: fonts,
-                    paletteColors: paletteColors,
                     textStyle: textStyle!,
                     textAlign: textAlign!,
                     initialTool: EditorToolbarAction.fontFamilyTool,
@@ -129,9 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() {
                         textStyle = textStyle!.merge(style);
                       });
-                    },
-                    onCpasLockTaggle: (caps) {
-                      print(caps);
                     },
                   ),
                 ),
