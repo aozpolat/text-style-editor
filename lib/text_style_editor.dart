@@ -4,8 +4,6 @@ export 'src/toolbar_action.dart';
 
 import 'package:flutter/material.dart';
 import 'src/toolbar_action.dart';
-import 'src/tools/background_color_tool.dart';
-import 'src/color_palette.dart';
 import 'src/tools/font_family_tool.dart';
 import 'src/tools/font_size_tool.dart';
 import 'src/tools/text_format_tool.dart';
@@ -38,9 +36,6 @@ class TextStyleEditor extends StatefulWidget {
   /// [onTextAlignEdited] will be called after [textAlingment] prop has changed
   final Function(TextAlign)? onTextAlignEdited;
 
-  /// [onCpasLockTaggle] will be called after caps lock has changed
-  final Function(bool)? onCpasLockTaggle;
-
   /// [onToolbarActionChanged] will be called after editor's tool has changed
   final Function(EditorToolbarAction)? onToolbarActionChanged;
 
@@ -52,7 +47,6 @@ class TextStyleEditor extends StatefulWidget {
   ///
   /// [onTextStyleEdited] callback will be called every time [textStyle] has changed.
   /// [onTextAlignEdited] callback will be called every time [textAlign] has changed.
-  /// [onCpasLockTaggle] callback will be called every time caps lock has changed to off or on.
   /// [onToolbarActionChanged] callback will be called every time editor's tool has changed.
   TextStyleEditor({
     required this.fonts,
@@ -62,7 +56,6 @@ class TextStyleEditor extends StatefulWidget {
     this.initialTool = EditorToolbarAction.editor,
     this.onTextStyleEdited,
     this.onTextAlignEdited,
-    this.onCpasLockTaggle,
     this.onToolbarActionChanged,
   });
 
@@ -155,11 +148,6 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                         widget.onTextAlignEdited!(align);
                       }
                     },
-                    onCpasLockTaggle: (caps) {
-                      if (widget.onCpasLockTaggle != null) {
-                        widget.onCpasLockTaggle!(caps);
-                      }
-                    },
                   );
                 case EditorToolbarAction.fontSizeTool:
                   return FontSizeTool(
@@ -182,34 +170,34 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case EditorToolbarAction.fontColorTool:
-                  return BackgroundColorTool(
-                    activeColor: _textStyle.color,
-                    colors: _paletteColors,
-                    onColorPicked: (color) {
-                      setState(
-                          () => _textStyle = _textStyle.copyWith(color: color));
+                // case EditorToolbarAction.fontColorTool:
+                //   return BackgroundColorTool(
+                //     activeColor: _textStyle.color,
+                //     colors: _paletteColors,
+                //     onColorPicked: (color) {
+                //       setState(
+                //           () => _textStyle = _textStyle.copyWith(color: color));
 
-                      if (widget.onTextStyleEdited != null) {
-                        widget.onTextStyleEdited!(_textStyle);
-                      }
-                    },
-                  );
-                case EditorToolbarAction.backgroundColorTool:
-                  return ColorPalette(
-                    activeColor: _textStyle.backgroundColor,
-                    colors: _paletteColors,
-                    onColorPicked: (color) {
-                      setState(() => _textStyle =
-                          _textStyle.copyWith(backgroundColor: color));
+                //       if (widget.onTextStyleEdited != null) {
+                //         widget.onTextStyleEdited!(_textStyle);
+                //       }
+                //     },
+                //   );
+                // case EditorToolbarAction.backgroundColorTool:
+                //   return ColorPalette(
+                //     activeColor: _textStyle.backgroundColor,
+                //     colors: _paletteColors,
+                //     onColorPicked: (color) {
+                //       setState(() => _textStyle =
+                //           _textStyle.copyWith(backgroundColor: color));
 
-                      if (widget.onTextStyleEdited != null) {
-                        widget.onTextStyleEdited!(_textStyle);
-                      }
-                    },
-                  );
-                case EditorToolbarAction.editor:
-                  return Container();
+                //       if (widget.onTextStyleEdited != null) {
+                //         widget.onTextStyleEdited!(_textStyle);
+                //       }
+                //     },
+                //   );
+                // case EditorToolbarAction.editor:
+                //   return Container();
                 default:
                   return Container();
               }

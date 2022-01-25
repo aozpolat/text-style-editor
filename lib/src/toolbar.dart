@@ -31,14 +31,6 @@ class _ToolbarState extends State<Toolbar> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         OptionButton(
-          isActive: _selectedAction == EditorToolbarAction.editor,
-          child: Icon(Icons.keyboard),
-          onPressed: () {
-            setState(() => _selectedAction = EditorToolbarAction.editor);
-            widget.onToolSelect(EditorToolbarAction.editor);
-          },
-        ),
-        OptionButton(
           isActive: _selectedAction == EditorToolbarAction.fontFamilyTool,
           child: Icon(Icons.title),
           onPressed: () {
@@ -62,23 +54,6 @@ class _ToolbarState extends State<Toolbar> {
           onPressed: () {
             setState(() => _selectedAction = EditorToolbarAction.fontSizeTool);
             widget.onToolSelect(EditorToolbarAction.fontSizeTool);
-          },
-        ),
-        OptionButton(
-          isActive: _selectedAction == EditorToolbarAction.fontColorTool,
-          child: Icon(Icons.format_color_text),
-          onPressed: () {
-            setState(() => _selectedAction = EditorToolbarAction.fontColorTool);
-            widget.onToolSelect(EditorToolbarAction.fontColorTool);
-          },
-        ),
-        OptionButton(
-          isActive: _selectedAction == EditorToolbarAction.backgroundColorTool,
-          child: Icon(Icons.format_color_fill),
-          onPressed: () {
-            setState(() =>
-                _selectedAction = EditorToolbarAction.backgroundColorTool);
-            widget.onToolSelect(EditorToolbarAction.backgroundColorTool);
           },
         ),
       ],

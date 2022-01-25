@@ -7,7 +7,6 @@ class TextFormatTool extends StatelessWidget {
     bool bold,
     bool italic,
   ) onTextFormatEdited;
-  final Function(bool caps) onCpasLockTaggle;
   final Function(TextAlign textAlign) onTextAlignEdited;
   final TextAlign textAlign;
   final bool bold;
@@ -17,8 +16,7 @@ class TextFormatTool extends StatelessWidget {
   TextFormatTool({
     required this.onTextFormatEdited,
     required this.onTextAlignEdited,
-    required this.onCpasLockTaggle,
-    this.textAlign = TextAlign.left,
+    this.textAlign = TextAlign.center,
     this.bold = false,
     this.italic = false,
     this.caps = false,
@@ -36,7 +34,6 @@ class TextFormatTool extends StatelessWidget {
             italic: italic,
             caps: caps,
             onFormatEdited: onTextFormatEdited,
-            onCpasLockTaggle: onCpasLockTaggle,
           ),
           SizedBox(height: 36),
           _TextAlignEditor(
@@ -55,7 +52,7 @@ class _TextAlignEditor extends StatefulWidget {
 
   _TextAlignEditor({
     required this.onTextAlignEdited,
-    this.textAlign = TextAlign.left,
+    this.textAlign = TextAlign.center,
   });
 
   @override
@@ -140,14 +137,12 @@ class _TextAlignOption extends StatelessWidget {
 
 class _TextFormatEditor extends StatefulWidget {
   final Function(bool bold, bool italic) onFormatEdited;
-  final Function(bool caps) onCpasLockTaggle;
   final bool bold;
   final bool italic;
   final bool caps;
 
   _TextFormatEditor({
     required this.onFormatEdited,
-    required this.onCpasLockTaggle,
     this.bold = false,
     this.italic = false,
     this.caps = false,
@@ -192,15 +187,6 @@ class _TextFormatEditorState extends State<_TextFormatEditor> {
           onPressed: () {
             setState(() => _italic = !_italic);
             widget.onFormatEdited(_bold, _italic);
-          },
-        ),
-        _TextFormatOption(
-          title: 'CAPS',
-          icon: Icons.keyboard_capslock,
-          isActive: _caps,
-          onPressed: () {
-            setState(() => _caps = !_caps);
-            widget.onCpasLockTaggle(_caps);
           },
         ),
       ],
